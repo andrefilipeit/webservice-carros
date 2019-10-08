@@ -1,0 +1,19 @@
+### Java ###
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
