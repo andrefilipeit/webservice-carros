@@ -125,11 +125,11 @@ public class CarroDAO extends BaseDAO{
 		
 		try {
 			conn = getConnection();
-			if(carro.getId() != null) {
+			if(carro.getId() == null) {
 				stmt = conn.prepareStatement("INSERT INTO carro (nome, descricao, url_foto, url_video, latitude, "
 						+ "longitude, tipo) VALUES(?,?,?,?,?,?,?)", Statement.RETURN_GENERATED_KEYS); 
 			}else {
-				stmt = conn.prepareStatement("UPDATE TABLE carro SET nome=?, descricao=?, url_foto=?, url_video=?, latitude=?,"
+				stmt = conn.prepareStatement("UPDATE carro SET nome=?, descricao=?, url_foto=?, url_video=?, latitude=?,"
 						+ "longitude=?, tipo=? WHERE id=?");
 			}
 			stmt.setString(1, carro.getNome());
@@ -140,7 +140,7 @@ public class CarroDAO extends BaseDAO{
 			stmt.setString(6, carro.getLongitude());
 			stmt.setString(7, carro.getTipo());
 			if(carro.getId() != null) {
-				//Se o id passado for nulo, estaremos fazendo o UPDATE, nesse cenário, teremos 1 parâmetro a mais
+				//Se o id passado não for nulo, estaremos fazendo o UPDATE, nesse cenário, teremos 1 parâmetro a mais
 				stmt.setLong(8, carro.getId());
 			}
 			//Se o código DML for executado, retorna 1, se não for executado, retorna 0.
